@@ -23,19 +23,19 @@
 │              PRESENTATION LAYER (Web Project)                    │
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   ┌──────────────────────────────────────────┐                  │
-│   │   Customers/Index.cshtml.cs              │                  │
-│   │   (PageModel)                            │                  │
-│   ├──────────────────────────────────────────┤                  │
-│   │ 3. OnGetAsync()                          │                  │
-│   │    {                                     │                  │
-│   │      var customers = await               │                  │
-│   │        _customerRepository               │                  │
-│   │          .GetAllAsync();                 │ ───────┐         │
-│   │    }                                     │        │         │
-│   └──────────────────────────────────────────┘        │         │
-│                                                       │         │
-└───────────────────────────────────────────────────────┼─────────┘
+│   ┌──────────────────────────────────────────┐                   │
+│   │   Customers/Index.cshtml.cs              │                   │
+│   │   (PageModel)                            │                   │
+│   ├──────────────────────────────────────────┤                   │
+│   │ 3. OnGetAsync()                          │                   │
+│   │    {                                     │                   │
+│   │      var customers = await               │                   │
+│   │        _customerRepository               │                   │
+│   │          .GetAllAsync();                 │ ───────┐          │
+│   │    }                                     │        │          │
+│   └──────────────────────────────────────────┘        │          │
+│                                                       │          │
+└───────────────────────────────────────────────────────┼──────────┘
                                                         │
                                         4. Repository call
                                                         │
@@ -63,27 +63,27 @@
 │            DATA ACCESS LAYER (Infrastructure Project)            │
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   ┌──────────────────────────────────────────┐                  │
-│   │   CustomerRepository.cs                  │                  │
-│   │   (Implementation)                       │                  │
-│   ├──────────────────────────────────────────┤                  │
-│   │ 6. GetAllAsync()                         │                  │
-│   │    {                                     │                  │
-│   │      return await _context               │                  │
-│   │        .Customers                        │                  │
-│   │        .Include(c => c.Orders)           │ ─────┐           │
-│   │        .ToListAsync();                   │      │           │
-│   │    }                                     │      │           │
-│   └──────────────────────────────────────────┘      │           │
-│                                                     │           │
-│   ┌──────────────────────────────────────────┐      │           │
-│   │   NorthwindDbContext.cs                  │      │           │
-│   │   (EF Core DbContext)                    │ ◄────┘           │
-│   ├──────────────────────────────────────────┤  7. LINQ Query   │
-│   │ DbSet<Customer> Customers                │                  │
-│   │ DbSet<Product> Products                  │                  │
-│   │ DbSet<Order> Orders                      │                  │
-│   └──────────────────────────────────────────┘                  │
+│   ┌──────────────────────────────────────────┐                   │
+│   │   CustomerRepository.cs                  │                   │
+│   │   (Implementation)                       │                   │
+│   ├──────────────────────────────────────────┤                   │
+│   │ 6. GetAllAsync()                         │                   │
+│   │    {                                     │                   │
+│   │      return await _context               │                   │
+│   │        .Customers                        │                   │
+│   │        .Include(c => c.Orders)           │ ─────┐            │
+│   │        .ToListAsync();                   │      │            │
+│   │    }                                     │      │            │
+│   └──────────────────────────────────────────┘      │            │
+│                                                     │            │
+│   ┌──────────────────────────────────────────┐      │            │
+│   │   NorthwindDbContext.cs                  │      │            │
+│   │   (EF Core DbContext)                    │ ◄────┘            │
+│   ├──────────────────────────────────────────┤  7. LINQ Query    │
+│   │ DbSet<Customer> Customers                │                   │
+│   │ DbSet<Product> Products                  │                   │
+│   │ DbSet<Order> Orders                      │                   │
+│   └──────────────────────────────────────────┘                   │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
                               │
@@ -111,37 +111,37 @@
 │              PRESENTATION LAYER (Web Project)                    │
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   ┌──────────────────────────────────────────┐                  │
-│   │   Customers/Index.cshtml.cs              │                  │
-│   ├──────────────────────────────────────────┤                  │
-│   │ 12. Map to ViewModel                     │                  │
-│   │     var viewModel = customers            │                  │
-│   │       .Select(c => new                   │                  │
-│   │         CustomerListViewModel {          │                  │
-│   │           Id = c.CustomerId,             │                  │
-│   │           Name = c.DisplayName,          │                  │
-│   │           City = c.City                  │                  │
-│   │         });                              │                  │
-│   └──────────────────────────────────────────┘                  │
+│   ┌──────────────────────────────────────────┐                   │
+│   │   Customers/Index.cshtml.cs              │                   │
+│   ├──────────────────────────────────────────┤                   │
+│   │ 12. Map to ViewModel                     │                   │
+│   │     var viewModel = customers            │                   │
+│   │       .Select(c => new                   │                   │
+│   │         CustomerListViewModel {          │                   │
+│   │           Id = c.CustomerId,             │                   │
+│   │           Name = c.DisplayName,          │                   │
+│   │           City = c.City                  │                   │
+│   │         });                              │                   │
+│   └──────────────────────────────────────────┘                   │
 │                       │                                          │
 │                       │ 13. Pass to View                         │
 │                       ↓                                          │
-│   ┌──────────────────────────────────────────┐                  │
-│   │   Customers/Index.cshtml                 │                  │
-│   │   (Razor View)                           │                  │
-│   ├──────────────────────────────────────────┤                  │
-│   │ @model CustomerListViewModel             │                  │
-│   │                                          │                  │
-│   │ <table>                                  │                  │
-│   │   @foreach(var customer in Model)        │                  │
-│   │   {                                      │                  │
-│   │     <tr>                                 │                  │
-│   │       <td>@customer.Name</td>            │                  │
-│   │       <td>@customer.City</td>            │                  │
-│   │     </tr>                                │                  │
-│   │   }                                      │                  │
-│   │ </table>                                 │                  │
-│   └──────────────────────────────────────────┘                  │
+│   ┌──────────────────────────────────────────┐                   │
+│   │   Customers/Index.cshtml                 │                   │
+│   │   (Razor View)                           │                   │
+│   ├──────────────────────────────────────────┤                   │
+│   │ @model CustomerListViewModel             │                   │
+│   │                                          │                   │
+│   │ <table>                                  │                   │
+│   │   @foreach(var customer in Model)        │                   │
+│   │   {                                      │                   │
+│   │     <tr>                                 │                   │
+│   │       <td>@customer.Name</td>            │                   │
+│   │       <td>@customer.City</td>            │                   │
+│   │     </tr>                                │                   │
+│   │   }                                      │                   │
+│   │ </table>                                 │                   │
+│   └──────────────────────────────────────────┘                   │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
                               │
@@ -150,9 +150,9 @@
 ┌──────────────────────────────────────────────────────────────────┐
 │                    ASP.NET CORE MIDDLEWARE                       │
 ├──────────────────────────────────────────────────────────────────┤
-│  • Apply layout (_Layout.cshtml)                                │
-│  • Include CSS and JavaScript                                   │
-│  • Generate final HTML response                                 │
+│  • Apply layout (_Layout.cshtml)                                 │
+│  • Include CSS and JavaScript                                    │
+│  • Generate final HTML response                                  │
 └──────────────────────────────────────────────────────────────────┘
                               │
                               │ 15. HTTP 200 OK + HTML

@@ -8,45 +8,45 @@
 │                 (NorthwindWorkshop.Web)                         │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
-│  │ Razor Pages  │  │ View Models  │  │   wwwroot    │         │
-│  ├──────────────┤  ├──────────────┤  ├──────────────┤         │
-│  │ Index.cshtml │  │ CustomerList │  │  CSS/JS      │         │
-│  │ Details      │  │ ProductDetail│  │  Images      │         │
-│  │ PageModels   │  │ OrderSummary │  │  Tailwind    │         │
-│  └──────────────┘  └──────────────┘  └──────────────┘         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │ Razor Pages  │  │ View Models  │  │   wwwroot    │           │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤           │
+│  │ Index.cshtml │  │ CustomerList │  │  CSS/JS      │           │
+│  │ Details      │  │ ProductDetail│  │  Images      │           │
+│  │ PageModels   │  │ OrderSummary │  │  Tailwind    │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
 │                                                                 │
 │  Responsibilities:                                              │
-│  • HTTP request/response handling                              │
-│  • User interface rendering                                    │
-│  • Input validation                                            │
-│  • Navigation and routing                                      │
+│  • HTTP request/response handling                               │
+│  • User interface rendering                                     │
+│  • Input validation                                             │
+│  • Navigation and routing                                       │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
-                            ↓ depends on ↓
+                       ↓ depends on ↓
 ┌─────────────────────────────────────────────────────────────────┐
 │                      DOMAIN LAYER                               │
 │                 (NorthwindWorkshop.Core)                        │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
-│  │   Entities   │  │  Interfaces  │  │   Services   │         │
-│  ├──────────────┤  ├──────────────┤  ├──────────────┤         │
-│  │ Customer     │  │ IRepository  │  │ Customer     │         │
-│  │ Product      │  │ ICustomer    │  │ Service      │         │
-│  │ Order        │  │   Repository │  │ Business     │         │
-│  │ Category     │  │ IProduct     │  │ Logic        │         │
-│  │ Supplier     │  │   Repository │  │              │         │
-│  │ Employee     │  │ IService     │  │              │         │
-│  └──────────────┘  └──────────────┘  └──────────────┘         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │   Entities   │  │  Interfaces  │  │   Services   │           │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤           │
+│  │ Customer     │  │ IRepository  │  │ Customer     │           │
+│  │ Product      │  │ ICustomer    │  │ Service      │           │
+│  │ Order        │  │   Repository │  │ Business     │           │
+│  │ Category     │  │ IProduct     │  │ Logic        │           │
+│  │ Supplier     │  │   Repository │  │              │           │
+│  │ Employee     │  │ IService     │  │              │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
 │                                                                 │
 │  Responsibilities:                                              │
-│  • Business logic and rules                                    │
-│  • Domain models and entities                                  │
-│  • Service contracts (interfaces)                              │
-│  • Domain validations                                          │
+│  • Business logic and rules                                     │
+│  • Domain models and entities                                   │
+│  • Service contracts (interfaces)                               │
+│  • Domain validations                                           │
 │                                                                 │
-│  Key Principle: NO DEPENDENCIES on other layers                │
+│  Key Principle: NO DEPENDENCIES on other layers                 │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
                             ↑ implements ↑
@@ -55,22 +55,22 @@
 │              (NorthwindWorkshop.Infrastructure)                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
-│  │   DbContext  │  │ Repositories │  │  Migrations  │         │
-│  ├──────────────┤  ├──────────────┤  ├──────────────┤         │
-│  │ Northwind    │  │ Customer     │  │ Schema       │         │
-│  │ DbContext    │  │   Repository │  │ Versioning   │         │
-│  │              │  │ Product      │  │ Database     │         │
-│  │ Entity       │  │   Repository │  │ Updates      │         │
-│  │ Config       │  │ Generic      │  │              │         │
-│  │              │  │   Repository │  │              │         │
-│  └──────────────┘  └──────────────┘  └──────────────┘         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │   DbContext  │  │ Repositories │  │  Migrations  │           │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤           │
+│  │ Northwind    │  │ Customer     │  │ Schema       │           │
+│  │ DbContext    │  │   Repository │  │ Versioning   │           │
+│  │              │  │ Product      │  │ Database     │           │
+│  │ Entity       │  │   Repository │  │ Updates      │           │
+│  │ Config       │  │ Generic      │  │              │           │
+│  │              │  │   Repository │  │              │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
 │                                                                 │
 │  Responsibilities:                                              │
-│  • Database connection management                              │
-│  • LINQ queries and data access                                │
-│  • Entity Framework configuration                              │
-│  • Database migrations                                         │
+│  • Database connection management                               │
+│  • LINQ queries and data access                                 │
+│  • Entity Framework configuration                               │
+│  • Database migrations                                          │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
                             ↓ accesses ↓

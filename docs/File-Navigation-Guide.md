@@ -3,7 +3,7 @@
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │                 C# NORTHWIND WORKSHOP PACKAGE                  │
-│                  Complete Learning Materials                    │
+│                  Complete Learning Materials                   │
 └────────────────────────────────────────────────────────────────┘
 
 START HERE → README.md (Master Guide)
@@ -196,21 +196,21 @@ NextJS-vs-CSharp-Comparison.md
           │  Main Workshop       │
           │  (Parts 1-9)         │──┐
           └──────────┬───────────┘  │
-                     │               │ Reference
-                     │               │ as needed
-                     ▼               │
+                     │              │ Reference
+                     │              │ as needed
+                     ▼              │
           ┌──────────────────────┐  │
           │   Checklist          │  │
           │ (Track Progress)     │  │
           └──────────┬───────────┘  │
-                     │               │
-                     ▼               │
+                     │              │
+                     ▼              │
           ┌──────────────────────┐  │
           │   Exercises          │  │
           │  (Part 10)           │  │
           └──────────┬───────────┘  │
-                     │               │
-                     ▼               │
+                     │              │
+                     ▼              │
           ┌──────────────────────┐◄─┘
           │  Comparison Doc      │
           │ (NextJS vs C#)       │

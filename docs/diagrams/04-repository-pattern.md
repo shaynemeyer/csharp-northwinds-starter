@@ -16,28 +16,28 @@ The Repository Pattern abstracts data access logic and provides a collection-lik
 ┌─────────────────────────────────────────────────────────────────┐
 │                      DOMAIN LAYER                               │
 │                                                                 │
-│  ┌───────────────────────────────────────────────────────────┐ │
-│  │            IRepository<T> (Generic Interface)             │ │
-│  ├───────────────────────────────────────────────────────────┤ │
-│  │ + Task<T> GetByIdAsync(int id)                           │ │
-│  │ + Task<IEnumerable<T>> GetAllAsync()                     │ │
-│  │ + Task<T> AddAsync(T entity)                             │ │
-│  │ + Task UpdateAsync(T entity)                             │ │
-│  │ + Task DeleteAsync(int id)                               │ │
-│  │ + Task<bool> ExistsAsync(int id)                         │ │
-│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │            IRepository<T> (Generic Interface)             │  │
+│  ├───────────────────────────────────────────────────────────┤  │
+│  │ + Task<T> GetByIdAsync(int id)                            │  │
+│  │ + Task<IEnumerable<T>> GetAllAsync()                      │  │
+│  │ + Task<T> AddAsync(T entity)                              │  │
+│  │ + Task UpdateAsync(T entity)                              │  │
+│  │ + Task DeleteAsync(int id)                                │  │
+│  │ + Task<bool> ExistsAsync(int id)                          │  │
+│  └───────────────────────────────────────────────────────────┘  │
 │                            ▲                                    │
 │                            │ Extends                            │
-│         ┌──────────────────┼──────────────────┐                │
-│         │                  │                  │                │
-│  ┌──────────────┐   ┌─────────────┐   ┌─────────────┐         │
-│  │ICustomer     │   │ IProduct    │   │ IOrder      │         │
-│  │Repository    │   │ Repository  │   │ Repository  │         │
-│  ├──────────────┤   ├─────────────┤   ├─────────────┤         │
-│  │+ GetByName   │   │+ GetLowStock│   │+ GetByCustomer│       │
-│  │+ GetByCity   │   │+ GetByCategory│ │+ GetRecent  │         │
-│  │+ SearchAsync │   │+ SearchAsync│   │+ GetPending │         │
-│  └──────────────┘   └─────────────┘   └─────────────┘         │
+│         ┌──────────────────┼──────────────────┐                 │
+│         │                  │                  │                 │
+│  ┌──────────────┐   ┌─────────────┐   ┌───────────────┐         │
+│  │ICustomer     │   │ IProduct    │   │ IOrder        │         │
+│  │Repository    │   │ Repository  │   │ Repository    │         │
+│  ├──────────────┤   ├─────────────┤   ├───────────────┤         │
+│  │+ GetByName   │   │+ GetLowStock│   │+ GetByCustomer│         │
+│  │+ GetByCity   │   │+ GetByCategory│ │+ GetRecent    │         │
+│  │+ SearchAsync │   │+ SearchAsync│   │+ GetPending   │         │
+│  └──────────────┘   └─────────────┘   └───────────────┘         │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
                             ▲
@@ -46,45 +46,45 @@ The Repository Pattern abstracts data access logic and provides a collection-lik
 ┌─────────────────────────────────────────────────────────────────┐
 │                 DATA ACCESS LAYER                               │
 │                                                                 │
-│  ┌───────────────────────────────────────────────────────────┐ │
-│  │         Repository<T> (Generic Implementation)            │ │
-│  ├───────────────────────────────────────────────────────────┤ │
-│  │ - NorthwindDbContext _context                            │ │
-│  │ - DbSet<T> _dbSet                                        │ │
-│  ├───────────────────────────────────────────────────────────┤ │
-│  │ + async Task<T> GetByIdAsync(int id)                     │ │
-│  │   {                                                       │ │
-│  │     return await _dbSet.FindAsync(id);                   │ │
-│  │   }                                                       │ │
-│  │                                                           │ │
-│  │ + async Task<IEnumerable<T>> GetAllAsync()               │ │
-│  │   {                                                       │ │
-│  │     return await _dbSet.ToListAsync();                   │ │
-│  │   }                                                       │ │
-│  │                                                           │ │
-│  │ + async Task<T> AddAsync(T entity)                       │ │
-│  │   {                                                       │ │
-│  │     await _dbSet.AddAsync(entity);                       │ │
-│  │     await _context.SaveChangesAsync();                   │ │
-│  │     return entity;                                       │ │
-│  │   }                                                       │ │
-│  └───────────────────────────────────────────────────────────┘ │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │         Repository<T> (Generic Implementation)            │  │
+│  ├───────────────────────────────────────────────────────────┤  │
+│  │ - NorthwindDbContext _context                             │  │
+│  │ - DbSet<T> _dbSet                                         │  │
+│  ├───────────────────────────────────────────────────────────┤  │
+│  │ + async Task<T> GetByIdAsync(int id)                      │  │
+│  │   {                                                       │  │
+│  │     return await _dbSet.FindAsync(id);                    │  │
+│  │   }                                                       │  │
+│  │                                                           │  │
+│  │ + async Task<IEnumerable<T>> GetAllAsync()                │  │
+│  │   {                                                       │  │
+│  │     return await _dbSet.ToListAsync();                    │  │
+│  │   }                                                       │  │
+│  │                                                           │  │
+│  │ + async Task<T> AddAsync(T entity)                        │  │
+│  │   {                                                       │  │
+│  │     await _dbSet.AddAsync(entity);                        │  │
+│  │     await _context.SaveChangesAsync();                    │  │
+│  │     return entity;                                        │  │
+│  │   }                                                       │  │
+│  └───────────────────────────────────────────────────────────┘  │
 │                            ▲                                    │
 │                            │ Inherits                           │
-│         ┌──────────────────┼──────────────────┐                │
-│         │                  │                  │                │
-│  ┌──────────────┐   ┌─────────────┐   ┌─────────────┐         │
-│  │Customer      │   │ Product     │   │ Order       │         │
-│  │Repository    │   │ Repository  │   │ Repository  │         │
-│  ├──────────────┤   ├─────────────┤   ├─────────────┤         │
-│  │+ GetByName   │   │+ GetLowStock│   │+ GetByCustomer│       │
-│  │  {           │   │  {          │   │  {          │         │
-│  │   return await│  │   return await│ │   return await│       │
-│  │   _context   │   │   _context  │   │   _context  │         │
-│  │   .Customers │   │   .Products │   │   .Orders   │         │
-│  │   .Where(...)│   │   .Where(...)│  │   .Where(...)│        │
-│  │  }           │   │  }          │   │  }          │         │
-│  └──────────────┘   └─────────────┘   └─────────────┘         │
+│         ┌──────────────────┼──────────────────┐                 │
+│         │                  │                  │                 │
+│  ┌───────────────┐   ┌───────────────┐   ┌───────────────┐      │
+│  │Customer       │   │ Product       │   │ Order         │      │
+│  │Repository     │   │ Repository    │   │ Repository    │      │
+│  ├───────────────┤   ├───────────────┤   ├───────────────┤      │
+│  │+ GetByName    │   │+ GetLowStock  │   │+ GetByCustomer│      │
+│  │  {            │   │  {            │   │  {            │      │
+│  │   return await│   │   return await│   │   return await│      │
+│  │   _context    │   │   _context    │   │   _context    │      │
+│  │   .Customers  │   │   .Products   │   │   .Orders     │      │
+│  │   .Where(...) │   │   .Where(...) │   │   .Where(...) │      │
+│  │  }            │   │  }            │   │  }            │      │
+│  └───────────────┘   └───────────────┘   └───────────────┘      │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
                             │
@@ -217,7 +217,7 @@ public class IndexModel : PageModel
 │      }                                                          │
 │  }                                                              │
 │                                                                 │
-│  ❌ Problems:                                                   │
+│  ❌ Problems:                                                    │
 │  • PageModel knows about EF Core                                │
 │  • Hard to test (requires real database)                        │
 │  • Difficult to change data source                              │
