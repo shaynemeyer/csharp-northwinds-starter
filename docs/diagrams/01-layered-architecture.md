@@ -105,9 +105,9 @@
                 │    Core     │ (Interfaces & Models)
                 └─────────────┘
                        ↑
-┌─────────────┐        │
+┌──────────────┐       │
 │Infrastructure│───────┘
-└─────────────┘
+└──────────────┘
 ```
 
 **Key Principle: Dependency Inversion**
