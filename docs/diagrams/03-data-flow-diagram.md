@@ -44,16 +44,16 @@
 │                   DOMAIN LAYER (Core Project)                    │
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   ┌──────────────────────────────────────────┐                  │
-│   │   ICustomerRepository.cs                 │                  │
-│   │   (Interface - Contract)                 │                  │
-│   ├──────────────────────────────────────────┤                  │
-│   │ Task<IEnumerable<Customer>>              │                  │
-│   │   GetAllAsync();                         │                  │
-│   │                                          │                  │
-│   │ Task<Customer>                           │                  │
-│   │   GetByIdAsync(int id);                  │                  │
-│   └──────────────────────────────────────────┘                  │
+│   ┌──────────────────────────────────────────┐                   │
+│   │   ICustomerRepository.cs                 │                   │
+│   │   (Interface - Contract)                 │                   │
+│   ├──────────────────────────────────────────┤                   │
+│   │ Task<IEnumerable<Customer>>              │                   │
+│   │   GetAllAsync();                         │                   │
+│   │                                          │                   │
+│   │ Task<Customer>                           │                   │
+│   │   GetByIdAsync(int id);                  │                   │
+│   └──────────────────────────────────────────┘                   │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
                               ↓
@@ -93,7 +93,7 @@
 │                        DATABASE (SQLite)                         │
 ├──────────────────────────────────────────────────────────────────┤
 │  SELECT * FROM Customers                                         │
-│  LEFT JOIN Orders ON Customers.CustomerId = Orders.CustomerId   │
+│  LEFT JOIN Orders ON Customers.CustomerId = Orders.CustomerId    │
 └──────────────────────────────────────────────────────────────────┘
                               │
                               │ 9. Return data rows
