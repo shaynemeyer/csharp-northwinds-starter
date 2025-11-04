@@ -1,0 +1,92 @@
+<nav class="w-64 bg-gray-900 text-white min-h-screen p-4">
+    <div class="mb-8">
+        <h4 class="text-center text-xl font-bold">Northwind</h4>
+        <p class="text-center text-gray-400 text-sm">Traders</p>
+    </div>
+    
+    <hr class="border-gray-700 mb-6" />
+    
+    <!-- Catalog Section -->
+    <div class="mb-6">
+        <h6 class="text-xs uppercase text-gray-400 font-semibold mb-3 px-2">Catalog</h6>
+        <ul class="space-y-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors @(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Products") == true ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-gray-800")" 
+                   asp-page="/Products/Index">
+                    <span>📦</span>
+                    <span>Products</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                   asp-page="/Categories/Index">
+                    <span>🏷️</span>
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                   asp-page="/Suppliers/Index">
+                    <span>🏭</span>
+                    <span>Suppliers</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Management Section -->
+    <div class="mb-6">
+        <h6 class="text-xs uppercase text-gray-400 font-semibold mb-3 px-2">Management</h6>
+        <ul class="space-y-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors @(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Customers") == true ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-gray-800")" 
+                   asp-page="/Customers/Index">
+                    <span>👥</span>
+                    <span>Customers</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors @(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Employees") == true ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-gray-800")" 
+                   asp-page="/Employees/Index">
+                    <span>👔</span>
+                    <span>Employees</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                   asp-page="/Orders/Index">
+                    <span>📋</span>
+                    <span>Orders</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                   asp-page="/Shippers/Index">
+                    <span>🚚</span>
+                    <span>Shippers</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Analytics Section -->
+    <div class="mb-6">
+        <h6 class="text-xs uppercase text-gray-400 font-semibold mb-3 px-2">Analytics</h6>
+        <ul class="space-y-1">
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                   asp-page="/Reports/Sales">
+                    <span>📊</span>
+                    <span>Sales Report</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                   asp-page="/Reports/Inventory">
+                    <span>📈</span>
+                    <span>Inventory Report</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
