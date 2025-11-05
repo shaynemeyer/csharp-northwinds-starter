@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li>
-                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-800" 
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors @(ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Categories") == true ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-gray-800")"
                    asp-page="/Categories/Index">
                     <span>🏷️</span>
                     <span>Categories</span>

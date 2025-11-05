@@ -1,0 +1,120 @@
+@page
+@model NorthwindWorkshop.Web.Pages.Categories.IndexModel
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-900">Categories</h1>
+        <span class="badge badge-primary text-lg">@Model.Categories.Count categories</span>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="card mb-6">
+        <div class="p-6">
+            <form method="get" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="searchTerm" class="block text-sm font-medium text-gray-700 mb-2">Search Categories</label>
+                    <input type="text"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           id="searchTerm"
+                           name="searchTerm"
+                           value="@Model.SearchTerm"
+                           placeholder="Search by name or description...">
+                </div>
+                <div class="flex items-end gap-4">
+                    <div class="flex items-center">
+                        <input class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                               type="checkbox"
+                               id="showEmpty"
+                               name="showEmpty"
+                               value="true"
+                               checked="@Model.ShowEmpty">
+                        <label class="ml-2 text-sm text-gray-700" for="showEmpty">
+                            Show Empty Categories
+                        </label>
+                    </div>
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" class="btn-primary w-full">Filter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Categories Table -->
+    <div class="card">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Category Name
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Description
+                        </th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Total Products
+                        </th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Active Products
+                        </th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <tr class="@(category.ActiveProductCount == 0 ? "bg-gray-100" : "hover:bg-gray-50") transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">@category.CategoryName</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-500 max-w-xs truncate">
+                                    @(category.Description ?? "No description available")
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="text-sm font-medium text-gray-900">@category.ProductCount</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <span class="badge @(category.ActiveProductCount > 0 ? "badge-success" : "badge-secondary")">
+                                    @category.ActiveProductCount
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                                @if (category.ActiveProductCount == 0)
+                                {
+                                    <span class="badge badge-secondary">Empty</span>
+                                }
+                                else if (category.ActiveProductCount < 5)
+                                {
+                                    <span class="badge badge-warning">Low Inventory</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-success">Well Stocked</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (!Model.Categories.Any())
+            {
+                <div class="text-center py-12">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                    </svg>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">No categories found</h3>
+                    <p class="mt-1 text-sm text-gray-500">Try adjusting your search or filter criteria.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
