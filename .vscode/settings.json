@@ -2,8 +2,6 @@
   // C# and OmniSharp settings
   "omnisharp.enableRoslynAnalyzers": true,
   "omnisharp.enableEditorConfigSupport": true,
-  "omnisharp.enableImportCompletion": true,
-  "omnisharp.organizeImportsOnFormat": true,
 
   // Editor settings for C#
   "[csharp]": {
@@ -81,7 +79,7 @@
   "problems.showCurrentInStatus": true,
 
   // Editor appearance
-  "editor.minimap.enabled": true,
+  "editor.minimap.enabled": false,
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [120],
   "editor.lineNumbers": "on",
@@ -90,5 +88,7 @@
   "files.associations": {
     "*.cshtml": "razor",
     "*.razor": "razor"
-  }
+  },
+  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "dotnet.formatting.organizeImportsOnFormat": true
 }

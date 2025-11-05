@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Northwind Traders</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+</head>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <partial name="_Sidebar" />
+        
+        <!-- Main Content -->
+        <main class="flex-1 overflow-x-hidden">
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-200 px-6 py-4 mb-6">
+                <div class="flex justify-between items-center gap-1">
+                    <h2 class="text-2xl font-bold text-gray-800">@ViewData["Title"]</h2>
+                    <div class="text-sm text-gray-500">
+                        Northwind Traders Management System
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <div class="px-6 pb-6">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
