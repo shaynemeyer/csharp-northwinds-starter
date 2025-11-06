@@ -100,5 +100,46 @@ public static class DbInitializer
         };
         context.Shippers.AddRange(shippers);
         context.SaveChanges();
+
+        // Seed Orders
+        var orders = new[]
+        {
+            new Order { CustomerId = 1, EmployeeId = 1, OrderDate = DateTime.Now.AddDays(-30), RequiredDate = DateTime.Now.AddDays(-23), ShipVia = 1, Freight = 12.50m, ShipName = "Alfreds Futterkiste", ShipCity = "Berlin", ShipCountry = "Germany" },
+            new Order { CustomerId = 1, EmployeeId = 2, OrderDate = DateTime.Now.AddDays(-15), RequiredDate = DateTime.Now.AddDays(-8), ShipVia = 2, Freight = 8.75m, ShipName = "Alfreds Futterkiste", ShipCity = "Berlin", ShipCountry = "Germany" },
+            new Order { CustomerId = 2, EmployeeId = 1, OrderDate = DateTime.Now.AddDays(-20), RequiredDate = DateTime.Now.AddDays(-13), ShipVia = 1, Freight = 15.30m, ShipName = "Ana Trujillo Emparedados", ShipCity = "México D.F.", ShipCountry = "Mexico" },
+            new Order { CustomerId = 3, EmployeeId = 3, OrderDate = DateTime.Now.AddDays(-25), RequiredDate = DateTime.Now.AddDays(-18), ShipVia = 3, Freight = 22.40m, ShipName = "Antonio Moreno Taquería", ShipCity = "México D.F.", ShipCountry = "Mexico" },
+            new Order { CustomerId = 4, EmployeeId = 2, OrderDate = DateTime.Now.AddDays(-10), RequiredDate = DateTime.Now.AddDays(-3), ShipVia = 1, Freight = 18.90m, ShipName = "Around the Horn", ShipCity = "London", ShipCountry = "UK" },
+            new Order { CustomerId = 5, EmployeeId = 1, OrderDate = DateTime.Now.AddDays(-5), RequiredDate = DateTime.Now.AddDays(2), ShipVia = 2, Freight = 9.65m, ShipName = "Berglunds snabbköp", ShipCity = "Luleå", ShipCountry = "Sweden" }
+        };
+        context.Orders.AddRange(orders);
+        context.SaveChanges();
+
+        // Seed Order Details
+        var orderDetails = new[]
+        {
+            // Order 1 details (Alfreds Futterkiste - first order)
+            new OrderDetail { OrderId = 1, ProductId = 1, UnitPrice = 18.00m, Quantity = 5, Discount = 0 },
+            new OrderDetail { OrderId = 1, ProductId = 3, UnitPrice = 10.00m, Quantity = 3, Discount = 0.05m },
+
+            // Order 2 details (Alfreds Futterkiste - second order)
+            new OrderDetail { OrderId = 2, ProductId = 2, UnitPrice = 19.00m, Quantity = 2, Discount = 0 },
+
+            // Order 3 details (Ana Trujillo Emparedados)
+            new OrderDetail { OrderId = 3, ProductId = 4, UnitPrice = 22.00m, Quantity = 4, Discount = 0 },
+            new OrderDetail { OrderId = 3, ProductId = 6, UnitPrice = 25.00m, Quantity = 2, Discount = 0.10m },
+
+            // Order 4 details (Antonio Moreno Taquería)
+            new OrderDetail { OrderId = 4, ProductId = 7, UnitPrice = 30.00m, Quantity = 1, Discount = 0 },
+            new OrderDetail { OrderId = 4, ProductId = 8, UnitPrice = 40.00m, Quantity = 2, Discount = 0 },
+
+            // Order 5 details (Around the Horn)
+            new OrderDetail { OrderId = 5, ProductId = 9, UnitPrice = 97.00m, Quantity = 1, Discount = 0 },
+
+            // Order 6 details (Berglunds snabbköp)
+            new OrderDetail { OrderId = 6, ProductId = 10, UnitPrice = 31.00m, Quantity = 3, Discount = 0 },
+            new OrderDetail { OrderId = 6, ProductId = 1, UnitPrice = 18.00m, Quantity = 2, Discount = 0 }
+        };
+        context.OrderDetails.AddRange(orderDetails);
+        context.SaveChanges();
     }
 }

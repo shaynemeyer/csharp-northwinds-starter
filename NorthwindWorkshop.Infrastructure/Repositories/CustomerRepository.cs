@@ -31,6 +31,13 @@ public class CustomerRepository : Repository<Customer>, ICustomerRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
+    {
+        return await _dbSet
+            .Include(c => c.Orders)
+            .ToListAsync();
+    }
+
     public async Task<Customer?> GetCustomerWithOrdersAsync(int customerId)
     {
         return await _dbSet

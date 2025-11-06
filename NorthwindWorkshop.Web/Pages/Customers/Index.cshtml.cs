@@ -20,15 +20,19 @@ public class IndexModel : PageModel
     public List<CustomerListViewModel> Customers { get; set; } = new();
     public string? SearchTerm { get; set; }
     public string? CountryFilter { get; set; }
+    public bool? HasOrdersFilter { get; set; }
     public List<string> Countries { get; set; } = new();
 
-    public async Task OnGetAsync(string? searchTerm, string? country)
+    public async Task OnGetAsync(string? searchTerm, string? country, bool? hasOrders)
     {
         SearchTerm = searchTerm;
         CountryFilter = country;
+        HasOrdersFilter = hasOrders;
 
-        // Get all customers with orders
-        var customers = await _customerRepository.GetCustomersWithOrdersAsync();
+        // Get customers based on filter
+        var customers = hasOrders == true
+            ? await _customerRepository.GetCustomersWithOrdersAsync()
+            : await _customerRepository.GetAllCustomersAsync();
 
         // Apply filters
         var query = customers.AsQueryable();
