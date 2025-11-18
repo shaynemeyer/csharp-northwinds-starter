@@ -426,3 +426,6 @@ Temporary Items
 .apdisk
 
 .env
+
+northwind.db-shm
+northwind.db-wal

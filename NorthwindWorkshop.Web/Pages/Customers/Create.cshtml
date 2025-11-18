@@ -1,0 +1,154 @@
+@page
+@model NorthwindWorkshop.Web.Pages.Customers.CreateModel
+@{
+    ViewData["Title"] = "Create New Customer";
+}
+
+<div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center space-x-4">
+            <a asp-page="Index" class="text-blue-600 hover:text-blue-800" title="Back to customers">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <h1 class="text-3xl font-bold text-gray-900">Create New Customer</h1>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+        <div class="card mb-6 border-red-200 bg-red-50">
+            <div class="p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-red-800">Please correct the following errors:</h3>
+                        <div class="mt-2 text-sm text-red-700">
+                            <ul class="list-disc list-inside">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <form method="post">
+        <!-- Company Information Card -->
+        <div class="card mb-8">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Company Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label asp-for="Customer.CompanyName" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.CompanyName"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter company name">
+                        <span asp-validation-for="Customer.CompanyName" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.ContactName" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.ContactName"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter contact name">
+                        <span asp-validation-for="Customer.ContactName" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.ContactTitle" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.ContactTitle"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter contact title">
+                        <span asp-validation-for="Customer.ContactTitle" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.Phone" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.Phone"
+                               type="tel"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter phone number">
+                        <span asp-validation-for="Customer.Phone" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="Customer.Fax" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.Fax"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter fax number">
+                        <span asp-validation-for="Customer.Fax" class="text-red-600 text-sm"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address Information Card -->
+        <div class="card mb-8">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Address Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label asp-for="Customer.Address" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.Address"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter street address">
+                        <span asp-validation-for="Customer.Address" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.City" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.City"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter city">
+                        <span asp-validation-for="Customer.City" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.Region" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.Region"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter region/state">
+                        <span asp-validation-for="Customer.Region" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.PostalCode" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.PostalCode"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter postal code">
+                        <span asp-validation-for="Customer.PostalCode" class="text-red-600 text-sm"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Customer.Country" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                        <input asp-for="Customer.Country"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter country">
+                        <span asp-validation-for="Customer.Country" class="text-red-600 text-sm"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between items-center">
+            <a asp-page="Index" class="btn-secondary">
+                Cancel
+            </a>
+            <button type="submit" class="btn-primary">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Create Customer
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
