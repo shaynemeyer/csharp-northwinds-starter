@@ -46,4 +46,14 @@ public class ProductRepository : Repository<Product>, IProductRepository
             .OrderBy(p => p.ProductName)
             .ToListAsync();
     }
+
+    public async Task<Product?> GetProductWithOrderDetailsAsync(int productId)
+    {
+        return await _dbSet
+            .Include(p => p.Category)
+            .Include(p => p.Supplier)
+            .Include(p => p.OrderDetails)
+                .ThenInclude(od => od.Order)
+            .FirstOrDefaultAsync(p => p.Id == productId);
+    }
 }

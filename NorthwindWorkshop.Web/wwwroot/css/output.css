@@ -66,7 +66,6 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
     --tracking-wider: 0.05em;
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
@@ -514,6 +513,9 @@
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
   }
+  .mt-6 {
+    margin-top: calc(var(--spacing) * 6);
+  }
   .mt-auto {
     margin-top: auto;
   }
@@ -608,14 +610,8 @@
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
-  .h-10 {
-    height: calc(var(--spacing) * 10);
-  }
   .h-12 {
     height: calc(var(--spacing) * 12);
-  }
-  .h-14 {
-    height: calc(var(--spacing) * 14);
   }
   .h-25 {
     height: calc(var(--spacing) * 25);
@@ -629,20 +625,11 @@
   .h-100 {
     height: calc(var(--spacing) * 100);
   }
-  .h-\[24px\] {
-    height: 24px;
-  }
   .h-auto {
     height: auto;
   }
   .min-h-screen {
     min-height: 100vh;
-  }
-  .w-2 {
-    width: calc(var(--spacing) * 2);
-  }
-  .w-3 {
-    width: calc(var(--spacing) * 3);
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
@@ -656,14 +643,8 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
-  .w-14 {
-    width: calc(var(--spacing) * 14);
-  }
   .w-25 {
     width: calc(var(--spacing) * 25);
-  }
-  .w-43 {
-    width: calc(var(--spacing) * 43);
   }
   .w-50 {
     width: calc(var(--spacing) * 50);
@@ -676,9 +657,6 @@
   }
   .w-100 {
     width: calc(var(--spacing) * 100);
-  }
-  .w-\[24px\] {
-    width: 24px;
   }
   .w-auto {
     width: auto;
@@ -1193,10 +1171,6 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
-  .font-extrabold {
-    --tw-font-weight: var(--font-weight-extrabold);
-    font-weight: var(--font-weight-extrabold);
-  }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
@@ -1368,13 +1342,6 @@
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
-  }
-  .hover\:bg-blue-700 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-blue-700);
-      }
-    }
   }
   .hover\:bg-gray-50 {
     &:hover {
